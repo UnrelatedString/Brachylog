@@ -63,7 +63,7 @@ run_from_atom(Code, Input, Output) :-
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 run(Input, Output) :-
     run(Input, Output, 'compiled_brachylog.pl').
-run(Input, Output, File) :-
+run(Input, Output, File) :-    % No longer used by eval, but it's here anyway
     set_prolog_flag(answer_write_options, [quoted(true),
                                            portray(true),
                                            max_depth(10),

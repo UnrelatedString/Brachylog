@@ -29,9 +29,20 @@ ____            ____
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 parse(Code, TranspiledPath) :-
     parse_no_file(Code, Predicates),
+    \+ important_file(TranspiledPath),    % Just to be safe
     open(TranspiledPath, write, File),
     maplist(write_to_file(File), Predicates),
     close(File).
+
+important_file('brachylog.pl').
+important_file('constraint_variables.pl').
+important_file('metapredicates.pl').
+important_file('predicates.pl').
+important_file('symbols.pl').
+important_file('tests.pl').
+important_file('tokenize.pl').
+important_file('transpile.pl').
+important_file('utils.pl').
 
 parse_no_file(Code, Predicates) :-
     atom_chars(Code, SplittedCode),

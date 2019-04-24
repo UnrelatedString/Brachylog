@@ -3,14 +3,14 @@ ____            ____
 \   \          /   /
  \   \  ____  /   /
   \   \/    \/   /
-   \     /\     /     BRACHYLOG       
+   \     /\     /     BRACHYLOG
     \   /  \   /      A terse declarative logic programming language
-    /   \  /   \    
+    /   \  /   \
    /     \/     \     Written by Julien Cumin - 2017
   /   /\____/\   \    https://github.com/JCumin/Brachylog
  /   /  ___   \   \
 /___/  /__/    \___\
-     
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
@@ -34,7 +34,7 @@ run_from_file(FilePath, Input, Output) :-
     !,
     run_from_atom(Code, Input, Output).
     
-    
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    RUN_FROM_ATOM
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -46,8 +46,8 @@ run_from_atom(Code, Input, Output) :-
     parse(Code, 'compiled_brachylog.pl'),
     !,
     run(Input, Output).
-    
-    
+
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    RUN
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -82,8 +82,8 @@ run(Input, Output) :-
         brachylog_prolog_variable(ParsedOutput, Output)
     ;   true
     ).
-    
-    
+
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    RUN_FROM_FILES_NO_FILE
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -158,7 +158,7 @@ run_from_files_no_file(FilePath, InputPath, OutputPath) :-
         ),
         (   (ReportInput = 'yes' ; ReportOutput = 'yes'),
             write('\n')
-        ;   true  
+        ;   true
         ),
         reverse(BindingsFinal, RBindings),
         report_bindings(RBindings),

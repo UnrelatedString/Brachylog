@@ -53,6 +53,7 @@ ____            ____
                        brachylog_behead/3,                              brachylog_behead_reversed/3,
                        brachylog_concatenate/3,                         brachylog_concatenate_reversed/3,
                        brachylog_duplicates/3,                          brachylog_duplicates_reversed/3,
+                       brachylog_eval/3,                                brachylog_eval_reversed/3,
                        brachylog_factors/3,                             brachylog_factors_reversed/3,
                        brachylog_group/3,                               brachylog_group_reversed/3,
                        brachylog_head/3,                                brachylog_head_reversed/3,
@@ -1544,6 +1545,27 @@ brachylog_duplicates('integer':0, L, M) :-
     is_brachylog_list(L),
     list_to_set(L, M).
 
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   BRACHYLOG_EVAL (if this ends up on a character other than e, move this)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+brachylog_eval_reversed(S, I, O) :-
+    brachylog_eval(S, O, I).
+brachylog_eval('first', ['integer':I|Input], Output) :-
+    (   Input = [Arg] -> true
+    ;   Input = Arg
+    ),
+    brachylog_eval('integer':I, Arg, Output).
+brachylog_eval('last', Input, Output) :-
+    reverse(Input, ['integer':I|T]),
+    (   T = [Arg] -> true
+    ;   reverse(T, Arg)
+    ),
+    brachylog_eval('integer':I, Arg, Output).
+brachylog_eval('default', Input, Output) :-
+    brachylog_eval('integer':0, Input, Output).
+brachylog_eval('integer':S, Input, Output) :-
+    format("~k | ~k | ~k~n",[S, Input, Output]).
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    BRACHYLOG_FACTORS

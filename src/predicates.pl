@@ -104,6 +104,8 @@ ____            ____
 
 :- use_module(library(clpfd)).
 :- use_module(utils).
+:- use_module(brachylog).    % for eval
+:- use_module(transpile).    % for eval
 
 :- multifile clpfd:run_propagator/2.
 
@@ -1564,8 +1566,11 @@ brachylog_eval('last', Input, Output) :-
     brachylog_eval('integer':I, Arg, Output).
 brachylog_eval('default', Input, Output) :-
     brachylog_eval('integer':0, Input, Output).
-brachylog_eval('integer':0, Input, Output) :-
-    true.
+brachylog_eval('integer':0, ['string':Program, Input], Output) :-
+    atomic_list_concat(Program, Source),
+    parse(Source, 'compiled_brachylog_eval.pl'),
+    !,
+    run(Input, Output, 'compiled_brachylog_eval.pl').
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    BRACHYLOG_FACTORS

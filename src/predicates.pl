@@ -1564,8 +1564,8 @@ brachylog_eval('last', Input, Output) :-
     brachylog_eval('integer':I, Arg, Output).
 brachylog_eval('default', Input, Output) :-
     brachylog_eval('integer':0, Input, Output).
-brachylog_eval('integer':S, Input, Output) :-
-    format("~k | ~k | ~k~n",[S, Input, Output]).
+brachylog_eval('integer':0, Input, Output) :-
+    true.
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    BRACHYLOG_FACTORS

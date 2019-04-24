@@ -14,6 +14,16 @@ ____            ____
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
+:- module(brachylog, [run_from_file/1,
+                      run_from_file/2,
+                      run_from_file/3,
+                      run_from_atom/1,
+                      run_from_atom/2,
+                      run_from_atom/3,
+                      run/2,
+                      run/3
+                     ]).
+
 :- use_module(transpile).
 :- use_module(symbols).
 :- use_module(utils).
@@ -33,7 +43,7 @@ run_from_file(FilePath, Input, Output) :-
     read_file(FilePath, Code),
     !,
     run_from_atom(Code, Input, Output).
-    
+
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    RUN_FROM_ATOM
@@ -52,6 +62,8 @@ run_from_atom(Code, Input, Output) :-
    RUN
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 run(Input, Output) :-
+    run(Input, Output, 'compiled_brachylog.pl').
+run(Input, Output, File) :-
     set_prolog_flag(answer_write_options, [quoted(true),
                                            portray(true),
                                            max_depth(10),
@@ -61,7 +73,7 @@ run(Input, Output) :-
                                           quoted(true),
                                           numbervars(true),
                                           max_depth(0)]),
-    consult('compiled_brachylog.pl'),
+    consult(File),
     (   \+ var(Input),
         Input \= 'ignore',
         parse_argument(Input, ParsedInput)

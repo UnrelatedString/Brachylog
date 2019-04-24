@@ -28,8 +28,8 @@ ____            ____
    PARSE
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 parse(Code, TranspiledPath) :-
-    parse_no_file(Code, Predicates),
     \+ important_file(TranspiledPath),    % Just to be safe
+    parse_no_file(Code, Predicates),
     open(TranspiledPath, write, File),
     maplist(write_to_file(File), Predicates),
     close(File).

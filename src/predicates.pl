@@ -2237,6 +2237,12 @@ brachylog_blocks('default', 'string':[H|T], StringBlocks) :-
     maplist(prepend_string, Blocks, StringBlocks),
     brachylog_blocks('default', [H|T], H, Blocks),
     !.
+brachylog_blocks('default', 'integer':I, Output) :-
+    Digits = [H|_],
+    H #\= 0,
+    integer_value('integer':_:Digits, I),
+    brachylog_blocks('default', Digits, Blocks),
+    maplist([B,'integer':X]>>integer_value('integer':_:B,X), Blocks, Output).
 
 brachylog_blocks('default', [], _, [[]]).
 brachylog_blocks('default', [H|T], H, [[H|T2]|T3]) :-

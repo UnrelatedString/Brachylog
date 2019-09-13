@@ -1,16 +1,16 @@
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ____            ____
 \   \          /   /
  \   \  ____  /   /
   \   \/    \/   /
-   \     /\     /     BRACHYLOG       
+   \     /\     /     BRACHYLOG
     \   /  \   /      A terse declarative logic programming language
-    /   \  /   \    
+    /   \  /   \
    /     \/     \     Written by Julien Cumin - 2017
   /   /\____/\   \    https://github.com/JCumin/Brachylog
  /   /  ___   \   \
 /___/  /__/    \___\
-     
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
@@ -41,7 +41,7 @@ ____            ____
                                  constraintY/1,
                                  constraintZ/1
                                 ]).
-                       
+
 :- use_module(library(clpfd)).
 :- use_module(utils).
 
@@ -91,8 +91,8 @@ constraintK(_) :- % Unused
     true.
 
 
-constraintL(_) :- % Unused
-    true.
+constraintL('integer':X) :-
+    brachylog_label('default','integer':X,_).
 
 
 constraintM([_,_|_]).

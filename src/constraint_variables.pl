@@ -91,8 +91,8 @@ constraintK(_) :- % Unused
     true.
 
 
-constraintL('integer':X) :-
-    brachylog_label('default','integer':X,_).
+constraintL('integer':X) :- % Unused
+    true.
 
 
 constraintM([_,_|_]).
@@ -135,8 +135,8 @@ constraintW(_) :-
     true.
 
 
-constraintX(_) :-
-    true.
+constraintX('integer':X) :-
+    brachylog_label('default','integer':X,_).
 
 
 constraintY(_) :-

@@ -2109,6 +2109,10 @@ brachylog_xterminate('integer':0, ['integer':I|X], 'integer':O) :-
     brachylog_xterminate('default', L, R),
     maplist([D,'integer':D]>>true,OutDigits, R),
     integer_value('integer':Sign:OutDigits, O).
+brachylog_xterminate('integer':0, [I, 'integer':R], O) :-
+    integer_value('integer':_:RemoveDigits, R),
+    maplist([D,'integer':D]>>true,RemoveDigits, L),
+    brachylog_xterminate('integer':0, [I | L], O).
 brachylog_xterminate('integer':0, [L,H|T], L3) :-
     is_brachylog_list(L),
     \+ is_brachylog_list(H),
